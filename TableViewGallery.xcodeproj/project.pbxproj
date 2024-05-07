@@ -16,6 +16,7 @@
 		BF4D95942BE6BC02007DD9C9 /* SimpleCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4D95932BE6BC02007DD9C9 /* SimpleCellViewController.swift */; };
 		BF4D95972BE6C89B007DD9C9 /* SectionCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4D95962BE6C89B007DD9C9 /* SectionCellViewController.swift */; };
 		BF4D95BA2BE73578007DD9C9 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4D95B92BE73578007DD9C9 /* CalculatorViewController.swift */; };
+		BF87EDF92BE9E53C0037682D /* ButtonViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF87EDF82BE9E53C0037682D /* ButtonViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		BF4D95932BE6BC02007DD9C9 /* SimpleCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCellViewController.swift; sourceTree = "<group>"; };
 		BF4D95962BE6C89B007DD9C9 /* SectionCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCellViewController.swift; sourceTree = "<group>"; };
 		BF4D95B92BE73578007DD9C9 /* CalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
+		BF87EDF82BE9E53C0037682D /* ButtonViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				BF4D95B92BE73578007DD9C9 /* CalculatorViewController.swift */,
+				BF87EDF82BE9E53C0037682D /* ButtonViewCell.swift */,
 			);
 			path = 06CalculatorCollectionView;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 			files = (
 				BF4D95832BE6BB2F007DD9C9 /* ViewController.swift in Sources */,
 				BF4D957F2BE6BB2F007DD9C9 /* AppDelegate.swift in Sources */,
+				BF87EDF92BE9E53C0037682D /* ButtonViewCell.swift in Sources */,
 				BF4D95972BE6C89B007DD9C9 /* SectionCellViewController.swift in Sources */,
 				BF4D95942BE6BC02007DD9C9 /* SimpleCellViewController.swift in Sources */,
 				BF4D95BA2BE73578007DD9C9 /* CalculatorViewController.swift in Sources */,

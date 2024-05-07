@@ -16,15 +16,22 @@ class CalculatorViewController: UIViewController {
                           #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1) , #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1) , #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1) , #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1) , #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1) , #colorLiteral(red: 0.5058823824, green: 0.3372549117, blue: 0.06666667014, alpha: 1) ,
                           #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1) , #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1) , #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1) , #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1) , #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1) , #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 1) ]
     
+    let calculatorButtons: [String] = [
+        "AC", "+/-", "%", "/",
+        "7", "8", "9", "x",
+        "4", "5", "6", "-",
+        "1", "2", "3", "+",
+        "0", ".", "="
+    ]
+    
+    private var collectionViewHeightConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         calculatorCollectionView.delegate = self
         calculatorCollectionView.dataSource = self
-        
-       
-
-    
-    
+        collectionViewHeightConstraint = collectionView.heightAnchor.constraint(equalToConstant: 50)
+        calculatorCollectionView.isScrollEnabled = false
     }
 
 }
@@ -36,12 +43,13 @@ extension CalculatorViewController: UICollectionViewDataSource {
         }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return colorData.count
+        return calculatorButtons.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = calculatorCollectionView.dequeueReusableCell(withReuseIdentifier: "calculatorCell", for: indexPath)
-        cell.backgroundColor = colorData[indexPath.item]
+        let cell = calculatorCollectionView.dequeueReusableCell(withReuseIdentifier: "calculatorCell", for: indexPath) as! ButtonViewCell
+        cell.calcButtonCell.backgroundColor = colorData[indexPath.item]
+        cell.calcButtonCell.titleLabel?.text = calculatorButtons[indexPath.item]
         return cell
     }
     
@@ -57,18 +65,8 @@ extension CalculatorViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let columns: CGFloat = 4
-        let collectionViewWidth = collectionView.bounds.width
-        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-        let spaceBetweenCells = flowLayout.minimumInteritemSpacing * (columns - 1)
-        let adjustedWidth = collectionViewWidth - spaceBetweenCells
-        let width: CGFloat = adjustedWidth / columns
-        let height: CGFloat = 100
-
-        if indexPath.item % 5 == 0 ||  indexPath.item % 8 == 0  {
-            return CGSize(width: width, height: height + 35)
-        }
-        return CGSize(width: width, height: height)
+        let widhtButton = (collectionView.frame.size.width - 10) / 10
+        return CGSize(width: widhtButton, height: widhtButton)
     }
     
 }
