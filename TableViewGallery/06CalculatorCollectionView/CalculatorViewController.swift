@@ -64,9 +64,16 @@ extension CalculatorViewController: UICollectionViewDelegateFlowLayout {
 
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let columns = 4
+
+        //spaicing
+        let spacing: CGFloat = 5
+        let totalHorizontalSpaicing = (columns -1) * spacing
         
-        let widhtButton = (collectionView.frame.size.width - 10) / 10
-        return CGSize(width: widhtButton, height: widhtButton)
+        let itemWidth = (collectionView.bounds.width - totalHorizontalSpaicing) / columns
+        let itemSize = CGSize(width: itemWidth, height: itemWidth)
+        
+        return itemSize
     }
     
 }
