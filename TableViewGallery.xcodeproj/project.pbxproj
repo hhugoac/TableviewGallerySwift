@@ -64,8 +64,8 @@
 		BF4D957D2BE6BB2F007DD9C9 /* TableViewGallery */ = {
 			isa = PBXGroup;
 			children = (
-				BF4D95B82BE73544007DD9C9 /* 06CalculatorCollectionView */,
 				BF4D95922BE6BBDD007DD9C9 /* 01SimpleCell */,
+				BF4D95B82BE73544007DD9C9 /* 06CalculatorCollectionView */,
 				BF4D95952BE6C849007DD9C9 /* 02SectionCell */,
 				BF4D957E2BE6BB2F007DD9C9 /* AppDelegate.swift */,
 				BF4D95872BE6BB30007DD9C9 /* Assets.xcassets */,
