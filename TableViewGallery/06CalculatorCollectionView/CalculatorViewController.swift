@@ -31,11 +31,6 @@ class CalculatorViewController: UIViewController {
         super.viewDidLoad()
         calculatorCollectionView.delegate = self
         calculatorCollectionView.dataSource = self
-        let layout = UICollectionViewFlowLayout()
-                layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
-                layout.minimumLineSpacing = spacing
-                calculatorCollectionView.collectionViewLayout = layout
-        calculatorCollectionView.isScrollEnabled = false
     }
 
 }
@@ -44,8 +39,15 @@ extension CalculatorViewController: UICollectionViewDataSource {
     
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header", for: indexPath as IndexPath)
-            return headerView
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "calcHeader", for: indexPath as IndexPath) as! HeaderReusableView
+            headerView.calcHeader?.text = "0"
+            return headerView     
+
+        default:
+            assert(false, "Invalid element type")
+        }
         }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -54,9 +56,10 @@ extension CalculatorViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = calculatorCollectionView.dequeueReusableCell(withReuseIdentifier: "calculatorCell", for: indexPath) as! ButtonViewCell
-        cell.calcButtonCell.backgroundColor = colorData[indexPath.item]
+               //cell.calcButtonCell.backgroundColor = colorData[indexPath.item]
         cell.calcButtonCell.titleLabel?.text = calculatorButtons[indexPath.item]
         return cell
+        
     }
     
     
@@ -67,18 +70,26 @@ extension CalculatorViewController: UICollectionViewDelegate {
 }
 
 extension CalculatorViewController: UICollectionViewDelegateFlowLayout {
-
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return  UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
     }
+   
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return CGFloat(spacing)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let numberOfItemsPerRow:CGFloat = 4
-        let spacingBetweenCells:CGFloat = 16
+        let spacingBetweenCells:CGFloat = 8
                
         let totalSpacing = (2 * self.spacing) + ((numberOfItemsPerRow - 1) * spacingBetweenCells) //Amount of total spacing in a row
                
         
-        let width = (calculatorCollectionView.bounds.width - totalSpacing)/numberOfItemsPerRow
+        let width = (calculatorCollectionView.bounds.width - (numberOfItemsPerRow - 1)*spacingBetweenCells)/numberOfItemsPerRow
+        print("width: \(width)")
+        print("width: \(calculatorCollectionView.bounds.width)")
+        print("spacing: \(totalSpacing)")
         return CGSize(width: width, height: width)
        
     }
